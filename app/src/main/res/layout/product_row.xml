@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                                    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="6dp"
+                                    app:cardCornerRadius="8dp">
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:id="@+id/image_thumbnail"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/product_image_thumbanil"
+                android:scaleType="fitCenter"/>
+
+        <TextView
+                android:id="@+id/name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/image_thumbnail"
+                android:padding="5dp"
+                android:text="TITLE"
+                android:textSize="19sp"
+                android:layout_toRightOf="@+id/image_thumbnail"
+                tools:ignore="HardcodedText"/>
+
+        <TextView
+                android:id="@+id/price_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:padding="6dp"
+                android:textSize="19sp"
+                android:textColor="@color/colorPrimary"
+                android:text="PRICE" android:layout_alignParentRight="true" tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
