@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.widget.Toast
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -17,6 +16,9 @@ import com.eesaaphilips.interviewprojectkotlin.adapters.ProductListAdapter
 import com.eesaaphilips.interviewprojectkotlin.model.Product
 import org.json.JSONException
 
+/**
+ * Main Activity
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewModel: MainViewModel
@@ -44,6 +46,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * retrieves JSON object from the URL and adds each product to the database via the viewModel
+     */
     private fun parseJSON() {
         val request = JsonObjectRequest(Request.Method.GET, URL_JSON, null, Response.Listener { response ->
             //successfully connected to host
@@ -79,5 +84,4 @@ class MainActivity : AppCompatActivity() {
         requestQueue = Volley.newRequestQueue(this@MainActivity)
         requestQueue.add(request)
     }
-
 }

@@ -10,11 +10,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.eesaaphilips.interviewprojectkotlin.R
 import com.eesaaphilips.interviewprojectkotlin.model.Product
 import com.eesaaphilips.interviewprojectkotlin.ui.DescriptionActivity
 
+/**
+ * RecyclerView adapter: manages list and clicks on rows
+ */
 class ProductListAdapter internal constructor(
     context: Context
 ) : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {

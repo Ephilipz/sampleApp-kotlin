@@ -7,6 +7,9 @@ import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.eesaaphilips.interviewprojectkotlin.model.Product
 
+/**
+ * Dao room class
+ */
 @Dao
 interface ProductDao {
 

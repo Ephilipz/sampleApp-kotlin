@@ -10,7 +10,11 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.android.Main
 import kotlin.coroutines.CoroutineContext
 
-class MainViewModel (application: Application) : AndroidViewModel(application) {
+/**
+ * Main ViewModel
+ * uses Coroutine for background threads
+ */
+class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var parentJob = Job()
     private val coroutineContext: CoroutineContext
         get() = parentJob + Dispatchers.Main
@@ -19,16 +23,25 @@ class MainViewModel (application: Application) : AndroidViewModel(application) {
     private val repository: ProductRepository
     val allProducts: LiveData<List<Product>>
 
+    /**
+     * initializer: instantiates the repository and products list
+     */
     init {
-        val productDao = ProductDatabase.getDatabase(application, scope).productDao()
+        val productDao = ProductDatabase.getDatabase(application).productDao()
         repository = ProductRepository(productDao)
         allProducts = repository.allProducts
     }
 
+    /**
+     * inserts products into database via the repository class
+     */
     fun insert(product: Product) = scope.launch(Dispatchers.IO) {
         repository.insert(product)
     }
 
+    /**
+     * ends background thread
+     */
     override fun onCleared() {
         super.onCleared()
         parentJob.cancel()

@@ -6,8 +6,10 @@ import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
 import com.eesaaphilips.interviewprojectkotlin.model.Product
-import kotlinx.coroutines.CoroutineScope
 
+/**
+ * Database class
+ */
 @Database(entities = [Product::class], version = 1, exportSchema = true)
 abstract class ProductDatabase : RoomDatabase() {
 
@@ -17,21 +19,31 @@ abstract class ProductDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: ProductDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): ProductDatabase {
+        /**
+         * creates database using passed context
+         * only one instance can be created at a time using synchronized
+         *
+         * @param context context to created database
+         */
+        fun getDatabase(context: Context): ProductDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     ProductDatabase::class.java,
                     "products_db"
                 )
-                    .addCallback(ProductDatabaseCallback(scope))
+                    .addCallback(ProductDatabaseCallback())
                     .build()
                 INSTANCE = instance
                 instance
             }
         }
 
-        private class ProductDatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
+
+        /**
+         * callback for database
+         */
+        private class ProductDatabaseCallback : RoomDatabase.Callback() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
             }
